@@ -4,178 +4,123 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GovAgent Panic</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="shell">
-      <header class="topbar">
-        <div class="brand">
-          <span class="brand-kicker">SOVEREIGN AI PLATFORM OPERATIONS</span>
+    <div class="app-shell">
+      <div class="backdrop"></div>
+
+      <header class="hud-top">
+        <div class="title-lockup">
+          <span class="kicker">SOVEREIGN AI CRISIS DEFENSE</span>
           <h1>GovAgent Panic</h1>
-          <p class="brand-copy">
-            Keep the stack alive for five working days while everyone around you
-            makes it materially harder.
+          <p id="status-line" class="status-line">
+            Hold the platform together while the office tries to tear it apart.
           </p>
         </div>
 
-        <div class="topbar-meta">
-          <div class="meta-block">
-            <span class="meta-label">Shift Clock</span>
-            <strong id="clock-label">Day 1 · 09:00</strong>
+        <div class="score-cluster">
+          <div class="score-box">
+            <span class="score-label">Day</span>
+            <strong id="wave-label">Day 1</strong>
           </div>
-          <div class="meta-block">
-            <span class="meta-label">Score</span>
+          <div class="score-box">
+            <span class="score-label">Score</span>
             <strong id="score-label">0</strong>
           </div>
-          <div class="meta-block">
-            <span class="meta-label">Run Status</span>
-            <strong id="run-status">Holding</strong>
+          <div class="score-box">
+            <span class="score-label">Combo</span>
+            <strong id="combo-label">x1</strong>
           </div>
-          <div class="topbar-actions">
-            <button id="pause-button" class="ghost-button" type="button">
-              Pause
-            </button>
-            <button id="step-button" class="ghost-button" type="button">
-              Step
-            </button>
-            <button id="restart-button" class="ghost-button" type="button">
-              Restart
-            </button>
+          <div class="score-box">
+            <span class="score-label">Mode</span>
+            <strong id="mode-label">Platform</strong>
           </div>
         </div>
       </header>
 
-      <section class="meter-strip" id="meter-strip" aria-label="Platform metrics"></section>
+      <section class="metrics-ribbon" id="metrics-ribbon" aria-label="Platform metrics"></section>
 
-      <main class="workspace">
-        <section class="panel inbox-panel">
-          <div class="panel-heading">
-            <div>
-              <p class="section-label">Inbox</p>
-              <h2>Live Ticket Queue</h2>
+      <main class="arena-frame">
+        <canvas id="game-canvas" width="1600" height="900" aria-label="GovAgent Panic arena"></canvas>
+
+        <div class="overlay left-overlay">
+          <section class="panel threat-panel">
+            <div class="panel-head">
+              <p class="panel-kicker">Threat Board</p>
+              <h2>Incoming Incidents</h2>
             </div>
-            <div class="queue-meta">
-              <span id="queue-count" class="pill">0 tickets</span>
-              <span id="queue-pressure" class="pill">Stable</span>
-            </div>
-          </div>
-          <div id="ticket-list" class="ticket-list"></div>
-        </section>
-
-        <section class="panel board-panel">
-          <div class="board-hero">
-            <div class="hero-copy">
-              <p class="section-label">Current Crisis</p>
-              <h2 id="selected-title">Select a ticket</h2>
-            </div>
-            <div id="event-banner" class="event-banner"></div>
-          </div>
-
-          <div class="selected-shell">
-            <div class="selected-head">
-              <div>
-                <span id="selected-severity" class="severity-badge">SEV-0</span>
-                <h3 id="selected-owner">No requester selected</h3>
-              </div>
-              <div class="selected-meta">
-                <div>
-                  <span class="meta-label">Patience</span>
-                  <strong id="selected-patience">0 / 0</strong>
-                </div>
-                <div>
-                  <span class="meta-label">Assignments</span>
-                  <strong id="selected-assignments">None</strong>
-                </div>
-              </div>
-            </div>
-
-            <div class="selected-message" id="selected-message">
-              Pick a ticket from the inbox. Route it through Platform,
-              Guardrails, and Stakeholders before it detonates in public.
-            </div>
-
-            <div id="selected-tags" class="tag-row" aria-label="Selected ticket tags"></div>
-            <div id="demand-grid" class="demand-grid"></div>
-          </div>
-
-          <div class="board-grid">
-            <section class="subpanel">
-              <div class="panel-heading">
-                <div>
-                  <p class="section-label">Ops Lanes</p>
-                  <h3>Who is working on what</h3>
-                </div>
-              </div>
-              <div id="lane-grid" class="lane-grid"></div>
-            </section>
-
-            <section class="subpanel">
-              <div class="panel-heading">
-                <div>
-                  <p class="section-label">Platform Knobs</p>
-                  <h3>Risky levers</h3>
-                </div>
-              </div>
-              <div id="knob-grid" class="knob-grid"></div>
-            </section>
-
-            <section class="subpanel">
-              <div class="panel-heading">
-                <div>
-                  <p class="section-label">Emergency Actions</p>
-                  <h3>Cooldown abilities</h3>
-                </div>
-              </div>
-              <div id="action-grid" class="action-grid"></div>
-            </section>
-          </div>
-        </section>
-
-        <aside class="sidebar">
-          <section class="panel">
-            <div class="panel-heading">
-              <div>
-                <p class="section-label">Shift Summary</p>
-                <h3>Run Pressure</h3>
-              </div>
-              <span id="best-run" class="best-run"></span>
-            </div>
-            <div id="summary-grid" class="summary-grid"></div>
+            <div id="incident-feed" class="incident-feed"></div>
           </section>
 
-          <section class="panel">
-            <div class="panel-heading">
-              <div>
-                <p class="section-label">Advisor Feed</p>
-                <h3>Unhelpful guidance</h3>
-              </div>
+          <section class="panel chatter-panel">
+            <div class="panel-head">
+              <p class="panel-kicker">Chatter</p>
+              <h2>Office Noise</h2>
             </div>
-            <div id="advisor-feed" class="advisor-feed"></div>
+            <div id="chatter-feed" class="chatter-feed"></div>
+          </section>
+        </div>
+
+        <div class="overlay right-overlay">
+          <section class="panel objective-panel">
+            <div class="panel-head">
+              <p class="panel-kicker">Boss Objective</p>
+              <h2 id="objective-title">Warmup shift</h2>
+            </div>
+            <p id="objective-copy" class="objective-copy">
+              Survive the opening rush and build a combo before demo day notices.
+            </p>
+            <div id="objective-tags" class="objective-tags"></div>
           </section>
 
-          <section class="panel">
-            <div class="panel-heading">
-              <div>
-                <p class="section-label">Incident Log</p>
-                <h3>Things you just did</h3>
-              </div>
+          <section class="panel upgrade-panel">
+            <div class="panel-head">
+              <p class="panel-kicker">Run Build</p>
+              <h2>Installed Upgrades</h2>
             </div>
-            <div id="log-feed" class="log-feed"></div>
+            <div id="upgrade-list" class="upgrade-list"></div>
           </section>
-        </aside>
+
+          <section class="panel controls-panel">
+            <div class="panel-head">
+              <p class="panel-kicker">Controls</p>
+              <h2>War Room</h2>
+            </div>
+            <p>Hold pointer to fire.</p>
+            <p><code>1</code> <code>2</code> <code>3</code> swap response mode.</p>
+            <p><code>Q</code> <code>W</code> <code>E</code> <code>R</code> trigger abilities.</p>
+            <p><code>Space</code> pause.</p>
+          </section>
+        </div>
       </main>
 
-      <dialog id="end-dialog" class="end-dialog">
-        <form method="dialog" class="end-dialog-body">
-          <p class="section-label" id="end-kicker"></p>
-          <h2 id="end-title"></h2>
-          <p id="end-summary"></p>
-          <div id="end-stats" class="end-stats"></div>
-          <button value="close" class="primary-button" type="submit">
-            Close Report
-          </button>
-        </form>
-      </dialog>
+      <footer class="hud-bottom">
+        <div id="mode-bar" class="mode-bar" aria-label="Response modes"></div>
+        <div id="ability-bar" class="ability-bar" aria-label="Abilities"></div>
+      </footer>
+
+      <div id="modal" class="modal visible" role="dialog" aria-modal="true">
+        <div class="modal-card">
+          <p id="modal-kicker" class="panel-kicker">CRISIS START</p>
+          <h2 id="modal-title">Defend the sovereign AI core.</h2>
+          <p id="modal-copy" class="modal-copy">
+            Incoming requests are swarming the platform. Switch response modes,
+            burn your abilities at the right moment, and keep the metrics alive
+            through five days of public-sector chaos.
+          </p>
+          <div id="modal-actions" class="modal-actions">
+            <button id="primary-action" class="action-button action-primary" type="button">
+              Start Shift
+            </button>
+            <button id="secondary-action" class="action-button action-secondary" type="button">
+              Toggle Autoplay
+            </button>
+          </div>
+          <div id="choice-grid" class="choice-grid"></div>
+        </div>
+      </div>
     </div>
 
     <script type="module" src="./app.js"></script>
