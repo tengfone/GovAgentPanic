@@ -1,0 +1,12 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="160" height="160" rx="12" fill="#172027"/>
+  <rect x="12" y="12" width="136" height="28" rx="8" fill="#F1665D"/>
+  <circle cx="80" cy="78" r="34" fill="#E2B48D"/>
+  <path d="M46 74C46 49 61 34 80 34C99 34 114 49 114 74V76H46V74Z" fill="#202930"/>
+  <path d="M64 94C71 101 89 101 96 94" stroke="#8E5C43" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="68" cy="78" r="4" fill="#22272D"/>
+  <circle cx="92" cy="78" r="4" fill="#22272D"/>
+  <path d="M58 126C62 108 74 100 80 100C86 100 98 108 102 126" fill="#45D07B"/>
+  <rect x="30" y="126" width="100" height="20" rx="8" fill="#1F2B32"/>
+  <text x="80" y="31" fill="#111418" font-size="14" font-family="Arial, sans-serif" text-anchor="middle">PM</text>
+</svg>
