@@ -2,6 +2,8 @@
 
 Live: [tengfone.github.io/GovAgentPanic](https://tengfone.github.io/GovAgentPanic/)
 
+![image](./assets/govagent.gif)
+
 GovAgent Panic is a static browser game about surviving five workdays inside a chaotic government AI platform office. You defend the sovereign AI core in real time while incidents, audits, political disasters, token burn, and boss fights pile up around you.
 
 ## What it is
